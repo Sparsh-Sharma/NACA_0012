@@ -3,9 +3,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 from numpy import *
 from pylab import *
-import time
-
-start = time.time()
 
 angle = 0
 airfoil = naca_airfoil("0012", 200, zero_thick_te=True)  
@@ -237,9 +234,7 @@ steps2 = np.array([0, num_steps*dt])
 
 #saving data
 data = (steps, 2*f[:,0])  
-savetxt('Tu_038__GA_10000_windows.csv',np.column_stack((steps, 2*f[:,1])), fmt='%5s', delimiter=',')
-end = time.time()
-print end - start
+savetxt('Tu_038__GA.csv',np.column_stack((steps, 2*f[:,1])), fmt='%5s', delimiter=',')
 
 fig = plt.figure()
 ax1 = fig.add_subplot(111)
@@ -249,7 +244,7 @@ ax1.plot(steps2, expected, c='g', label='expected Cl')
 plt.legend();
 plt.xlabel('time')
 #plt.grid(True)
-plt.savefig('Tu_038_GA__10000_windows.pdf')
+plt.savefig('Tu_038_GA__.pdf')
 plt.show()
 
 
@@ -260,12 +255,12 @@ average_thrust = np.average(flow.force[:,0])
 average_lift = np.average(flow.force[:,1])
 #print average_lift
 
-def Curles_loadingNoise(y_int,c_sound,r_dist,L,dt,Velo):
-	p_acoustic = ((y_int*L)/(4*np.pi*dt*c_sound*(r_dist**2)))*(0.5*1.225*pow(Velo,2))
+def Curles_loadingNoise(y_int,c_sound,r_dist,L,dt):
+	p_acoustic = (y_int)/(4*np.pi*c_sound*(r_dist**2)) * (L/dt)
 	return p_acoustic
 
-noise = Curles_loadingNoise(1, 343,1, 2*f[:,1],dt,25.16)
-#print (noise)
+noise = Curles_loadingNoise(1, 343, 3, 2*f[:,1],dt)
+print noise
 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -274,19 +269,21 @@ import matplotlib.mlab as mlab
 import math
 
 def L_p(x):
-	return 20*np.log10(np.abs(x)/2.e-5)
+	return 10*np.log10(x**2/4.e-10)
 
-blocksize=100
+blocksize=4096
 j=0
 
-(werte,freq)=plt.psd(noise, NFFT=blocksize, Fs=100, detrend=mlab.detrend_none,window=mlab.window_hanning, noverlap=4, pad_to=None,sides='default', scale_by_freq='True')
+(werte,freq)=plt.psd(noise, NFFT=blocksize, Fs=100, detrend=mlab.detrend_none,window=mlab.window_hanning, noverlap=0.75*blocksize, pad_to=None,sides='default', scale_by_freq='True')
 #xx=30
 
 
-pegel=L_p(werte)
+pegel=L_p(werte*0.950065396**2)
 #freq=freq[xx:]
 plt.plot()
 
+#pegel=L_p(df)
+#plt.plot()
 	
 #Sr=freq*durchmesser/U
 #solldrucklist=[1000,1200,1500,1700]
@@ -296,9 +293,5 @@ stylelist=['--','-.',':','-']
 plt.figure(1,figsize=(8.4/2.54,4.0/2.54))
 plt.semilogx(freq,pegel,linestyle=stylelist[j],linewidth=0.6,alpha=alphalist[j])
 j+=1
-plt.savefig('SPL_10000_windows.pdf')
+plt.savefig('Tu_038_PSD_GA_.pdf')
 plt.show()
-
-import cProfile
-
-cProfile.run('ExplicitEuler(dt, Uinfty, bound, wake=vort, need_force="wake_impulse")')

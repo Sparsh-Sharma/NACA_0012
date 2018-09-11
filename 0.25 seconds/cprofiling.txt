@@ -1,0 +1,81 @@
+         181 function calls (180 primitive calls) in 0.003 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.003    0.003 <string>:1(<module>)
+        6    0.000    0.000    0.000    0.000 _methods.py:31(_sum)
+        3    0.000    0.000    0.000    0.000 _methods.py:37(_any)
+      2/1    0.000    0.000    0.000    0.000 body.py:109(get_pre_motion)
+        2    0.000    0.000    0.000    0.000 body.py:116(get_motion)
+        1    0.000    0.000    0.000    0.000 body.py:119(set_motion)
+        1    0.000    0.000    0.000    0.000 body.py:126(time)
+        2    0.000    0.000    0.000    0.000 body.py:130(_update)
+        1    0.000    0.000    0.000    0.000 body.py:29(time)
+        1    0.000    0.000    0.000    0.000 body.py:40(get_pre_motion)
+        1    0.000    0.000    0.000    0.000 fromnumeric.py:1190(squeeze)
+        1    0.000    0.000    0.000    0.000 fromnumeric.py:1427(ravel)
+        6    0.000    0.000    0.000    0.000 fromnumeric.py:1778(sum)
+        1    0.000    0.000    0.000    0.000 fromnumeric.py:50(_wrapfunc)
+        1    0.000    0.000    0.000    0.000 fromnumeric.py:529(transpose)
+        2    0.000    0.000    0.000    0.000 function_base.py:5114(append)
+        1    0.000    0.000    0.000    0.000 linalg.py:100(get_linalg_error_extobj)
+        2    0.000    0.000    0.000    0.000 linalg.py:105(_makearray)
+        3    0.000    0.000    0.000    0.000 linalg.py:110(isComplexType)
+        2    0.000    0.000    0.000    0.000 linalg.py:123(_realType)
+        1    0.000    0.000    0.000    0.000 linalg.py:138(_commonType)
+        1    0.000    0.000    0.000    0.000 linalg.py:197(_assertRankAtLeast2)
+        1    0.000    0.000    0.000    0.000 linalg.py:208(_assertNdSquareness)
+        1    0.002    0.002    0.002    0.002 linalg.py:315(solve)
+        1    0.000    0.000    0.000    0.000 motion.py:116(map_vector)
+        1    0.000    0.000    0.000    0.000 motion.py:129(map_velocity)
+        1    0.000    0.000    0.000    0.000 motion.py:37(_update)
+        2    0.000    0.000    0.000    0.000 motion.py:78(compose)
+        1    0.000    0.000    0.000    0.000 motion.py:8(__init__)
+        2    0.000    0.000    0.000    0.000 motion.py:96(map_position)
+        1    0.000    0.000    0.000    0.000 numeric.py:146(ones)
+        2    0.000    0.000    0.000    0.000 numeric.py:424(asarray)
+        9    0.000    0.000    0.000    0.000 numeric.py:495(asanyarray)
+        1    0.000    0.000    0.000    0.000 numeric.py:83(zeros_like)
+        1    0.000    0.000    0.000    0.000 panel.py:143(compute_rhs)
+        1    0.000    0.000    0.000    0.000 panel.py:164(get_newly_shed)
+        1    0.000    0.000    0.000    0.000 panel.py:188(time)
+        1    0.000    0.000    0.000    0.000 panel.py:60(update_motion)
+        1    0.000    0.000    0.000    0.000 panel.py:77(influence_matrix)
+        1    0.000    0.000    0.003    0.003 panel.py:95(update_strengths_unsteady)
+        4    0.000    0.000    0.000    0.000 shape_base.py:11(atleast_1d)
+        1    0.000    0.000    0.000    0.000 shape_base.py:182(vstack)
+        2    0.000    0.000    0.001    0.000 shape_base.py:236(hstack)
+        2    0.000    0.000    0.000    0.000 shape_base.py:63(atleast_2d)
+        1    0.000    0.000    0.003    0.003 timestepper.py:12(__init__)
+        1    0.000    0.000    0.003    0.003 timestepper.py:25(initialize)
+        1    0.000    0.000    0.000    0.000 vortex.py:25(positions)
+        1    0.000    0.000    0.000    0.000 vortex.py:33(strengths)
+        1    0.000    0.000    0.000    0.000 vortex.py:37(strengths)
+        1    0.000    0.000    0.000    0.000 vortex.py:57(append)
+        1    0.000    0.000    0.000    0.000 vortex.py:69(induced_velocity_single)
+        1    0.000    0.000    0.000    0.000 vortex.py:8(__init__)
+        3    0.000    0.000    0.000    0.000 {getattr}
+        7    0.000    0.000    0.000    0.000 {isinstance}
+        5    0.000    0.000    0.000    0.000 {issubclass}
+        6    0.000    0.000    0.000    0.000 {len}
+        1    0.000    0.000    0.000    0.000 {max}
+        1    0.000    0.000    0.000    0.000 {method '__array_prepare__' of 'numpy.ndarray' objects}
+        3    0.000    0.000    0.000    0.000 {method 'any' of 'numpy.ndarray' objects}
+        6    0.000    0.000    0.000    0.000 {method 'append' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'astype' of 'numpy.ndarray' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+        2    0.000    0.000    0.000    0.000 {method 'get' of 'dict' objects}
+        1    0.000    0.000    0.000    0.000 {method 'ravel' of 'numpy.ndarray' objects}
+        9    0.000    0.000    0.000    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+        1    0.000    0.000    0.000    0.000 {method 'reshape' of 'numpy.ndarray' objects}
+        1    0.000    0.000    0.000    0.000 {method 'squeeze' of 'numpy.ndarray' objects}
+        1    0.000    0.000    0.000    0.000 {method 'transpose' of 'numpy.ndarray' objects}
+        1    0.000    0.000    0.000    0.000 {min}
+       29    0.000    0.000    0.000    0.000 {numpy.core.multiarray.array}
+        5    0.001    0.000    0.001    0.000 {numpy.core.multiarray.concatenate}
+        2    0.000    0.000    0.000    0.000 {numpy.core.multiarray.copyto}
+        3    0.000    0.000    0.000    0.000 {numpy.core.multiarray.dot}
+        1    0.000    0.000    0.000    0.000 {numpy.core.multiarray.empty_like}
+        1    0.000    0.000    0.000    0.000 {numpy.core.multiarray.empty}
+        2    0.000    0.000    0.000    0.000 {numpy.core.multiarray.zeros}

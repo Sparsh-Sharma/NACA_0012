@@ -3,19 +3,18 @@ import matplotlib.pyplot as plt
 import numpy as np
 from numpy import *
 from pylab import *
-import time
+import timeit
 
-start = time.time()
-
+start = timeit.timeit()
 angle = 0
 airfoil = naca_airfoil("0012", 200, zero_thick_te=True)  
 airfoil = TransformedBody(airfoil, displacement=(2.5, 2.5))
 airfoil = TransformedBody(airfoil, angle)
 bound = BoundVortices(airfoil)
 
-num_steps = 100
+num_steps = 1000
 Uinfty = (25.16,0)
-dt = 0.01
+dt = 0.001
 Vortices.core_radius = dt
 
 #free vortices
@@ -238,8 +237,8 @@ steps2 = np.array([0, num_steps*dt])
 #saving data
 data = (steps, 2*f[:,0])  
 savetxt('Tu_038__GA_10000_windows.csv',np.column_stack((steps, 2*f[:,1])), fmt='%5s', delimiter=',')
-end = time.time()
-print end - start
+end = timeit.timeit()
+print (end - start)
 
 fig = plt.figure()
 ax1 = fig.add_subplot(111)
@@ -265,7 +264,7 @@ def Curles_loadingNoise(y_int,c_sound,r_dist,L,dt,Velo):
 	return p_acoustic
 
 noise = Curles_loadingNoise(1, 343,1, 2*f[:,1],dt,25.16)
-#print (noise)
+print (noise)
 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -298,7 +297,3 @@ plt.semilogx(freq,pegel,linestyle=stylelist[j],linewidth=0.6,alpha=alphalist[j])
 j+=1
 plt.savefig('SPL_10000_windows.pdf')
 plt.show()
-
-import cProfile
-
-cProfile.run('ExplicitEuler(dt, Uinfty, bound, wake=vort, need_force="wake_impulse")')

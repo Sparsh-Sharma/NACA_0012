@@ -3,9 +3,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 from numpy import *
 from pylab import *
-import time
-
-start = time.time()
 
 angle = 0
 airfoil = naca_airfoil("0012", 200, zero_thick_te=True)  
@@ -13,9 +10,9 @@ airfoil = TransformedBody(airfoil, displacement=(2.5, 2.5))
 airfoil = TransformedBody(airfoil, angle)
 bound = BoundVortices(airfoil)
 
-num_steps = 100
+num_steps = 20000
 Uinfty = (25.16,0)
-dt = 0.01
+dt = 0.000025
 Vortices.core_radius = dt
 
 #free vortices
@@ -237,9 +234,7 @@ steps2 = np.array([0, num_steps*dt])
 
 #saving data
 data = (steps, 2*f[:,0])  
-savetxt('Tu_038__GA_10000_windows.csv',np.column_stack((steps, 2*f[:,1])), fmt='%5s', delimiter=',')
-end = time.time()
-print end - start
+savetxt('Tu_038__GA_20000.csv',np.column_stack((steps, 2*f[:,1])), fmt='%5s', delimiter=',')
 
 fig = plt.figure()
 ax1 = fig.add_subplot(111)
@@ -249,7 +244,7 @@ ax1.plot(steps2, expected, c='g', label='expected Cl')
 plt.legend();
 plt.xlabel('time')
 #plt.grid(True)
-plt.savefig('Tu_038_GA__10000_windows.pdf')
+plt.savefig('Tu_038_GA__20000.pdf')
 plt.show()
 
 
@@ -265,7 +260,7 @@ def Curles_loadingNoise(y_int,c_sound,r_dist,L,dt,Velo):
 	return p_acoustic
 
 noise = Curles_loadingNoise(1, 343,1, 2*f[:,1],dt,25.16)
-#print (noise)
+print noise
 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -279,7 +274,7 @@ def L_p(x):
 blocksize=100
 j=0
 
-(werte,freq)=plt.psd(noise, NFFT=blocksize, Fs=100, detrend=mlab.detrend_none,window=mlab.window_hanning, noverlap=4, pad_to=None,sides='default', scale_by_freq='True')
+(werte,freq)=plt.psd(noise, NFFT=blocksize, Fs=10000, detrend=mlab.detrend_none,window=mlab.window_hanning, noverlap=04, pad_to=None,sides='default', scale_by_freq='True')
 #xx=30
 
 
@@ -296,9 +291,5 @@ stylelist=['--','-.',':','-']
 plt.figure(1,figsize=(8.4/2.54,4.0/2.54))
 plt.semilogx(freq,pegel,linestyle=stylelist[j],linewidth=0.6,alpha=alphalist[j])
 j+=1
-plt.savefig('SPL_10000_windows.pdf')
+plt.savefig('SPL_20000.pdf')
 plt.show()
-
-import cProfile
-
-cProfile.run('ExplicitEuler(dt, Uinfty, bound, wake=vort, need_force="wake_impulse")')

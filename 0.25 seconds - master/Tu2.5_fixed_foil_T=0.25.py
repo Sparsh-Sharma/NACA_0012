@@ -13,9 +13,9 @@ airfoil = TransformedBody(airfoil, displacement=(2.5, 2.5))
 airfoil = TransformedBody(airfoil, angle)
 bound = BoundVortices(airfoil)
 
-num_steps = 100
+num_steps = 1000
 Uinfty = (25.16,0)
-dt = 0.01
+dt = 0.001
 Vortices.core_radius = dt
 
 #free vortices
@@ -298,7 +298,3 @@ plt.semilogx(freq,pegel,linestyle=stylelist[j],linewidth=0.6,alpha=alphalist[j])
 j+=1
 plt.savefig('SPL_10000_windows.pdf')
 plt.show()
-
-import cProfile
-
-cProfile.run('ExplicitEuler(dt, Uinfty, bound, wake=vort, need_force="wake_impulse")')
