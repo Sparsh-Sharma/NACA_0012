@@ -1,4 +1,12 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Feb 11 01:10:44 2019
+
+@author: WS1
+"""
+
 from pysces import *
+#from vortex import *
 import matplotlib.pyplot as plt
 import numpy as np
 from numpy import *
@@ -237,7 +245,7 @@ steps2 = np.array([0, num_steps*dt])
 
 #saving data
 data = (steps, 2*f[:,0])  
-savetxt('Tu_038__GA_10000_windows.csv',np.column_stack((steps, 2*f[:,1])), fmt='%5s', delimiter=',')
+#savetxt('Tu_038__GA_10000_windows.csv',np.column_stack((steps, 2*f[:,1])), fmt='%5s', delimiter=',')
 end = time.time()
 print end - start
 
@@ -249,7 +257,7 @@ ax1.plot(steps2, expected, c='g', label='expected Cl')
 plt.legend();
 plt.xlabel('time')
 #plt.grid(True)
-plt.savefig('Tu_038_GA__10000_windows.pdf')
+#plt.savefig('Tu_038_GA__10000_windows.pdf')
 plt.show()
 
 
@@ -276,29 +284,11 @@ import math
 def L_p(x):
 	return 20*np.log10(np.abs(x)/2.e-5)
 
-blocksize=100
-j=0
-
-(werte,freq)=plt.psd(noise, NFFT=blocksize, Fs=100, detrend=mlab.detrend_none,window=mlab.window_hanning, noverlap=4, pad_to=None,sides='default', scale_by_freq='True')
-#xx=30
-
-
+(werte,freq) = psd(noise,Fs=1/dt,detrend='mean')
 pegel=L_p(werte)
-#freq=freq[xx:]
-plt.plot()
-
-	
-#Sr=freq*durchmesser/U
-#solldrucklist=[1000,1200,1500,1700]
-alphalist=[0.25,0.5,0.75,1.0]
-stylelist=['--','-.',':','-']
-
-plt.figure(1,figsize=(8.4/2.54,4.0/2.54))
-plt.semilogx(freq,pegel,linestyle=stylelist[j],linewidth=0.6,alpha=alphalist[j])
-j+=1
-plt.savefig('SPL_10000_windows.pdf')
+plt.figure(2)
+plt.semilogx(freq,pegel,label='v')
+plt.legend()
 plt.show()
 
-import cProfile
-
-cProfile.run('ExplicitEuler(dt, Uinfty, bound, wake=vort, need_force="wake_impulse")')
+#cProfile.run('ExplicitEuler(dt, Uinfty, bound, wake=vort, need_force="wake_impulse")')

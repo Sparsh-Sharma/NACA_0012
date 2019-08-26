@@ -51,7 +51,7 @@ def calcAmietGershfeld(bx,dx,Rx,Ux,ux,Lambdax,tfreqx,cx):
 #####################
 chord=1
 span=2
-U=25.16
+U=5.0
 Lambda=0.0058
 freq=array((10,12.5,16,20,25,31.5,40,50,63,80,100,125,160,200,250,315,400,500,630,800,1000,1250,1600,2000,3150,4000,5000,6300,8000,10000,12500,16000,20000))
 
@@ -74,9 +74,9 @@ for Tu in Tulist:
 	semilogx(freq,pegelamiet,'-',linewidth=1.0,color=collist[j],label=labellist[j])
 	semilogx(freq,pegelamiet2,'--',linewidth=1.0,color=collist[j])
 
-#grid(color='0.5',linestyle=':',linewidth=0.2)
-savetxt('Tu_038_Amiet+Gershfeld.csv',np.column_stack((pegelamiet, pegelamiet2)), fmt='%5s', delimiter=',')
-savetxt('Tu_038_Amiet.csv',np.column_stack((freq, pegelamiet, pegelamiet2)), fmt='%5s', delimiter=',')
+grid(color='0.5',linestyle=':',linewidth=0.2)
+# savetxt('Tu_038_Amiet+Gershfeld.csv',np.column_stack((pegelamiet, pegelamiet2)), fmt='%5s', delimiter=',')
+# savetxt('Tu_038_Amiet.csv',np.column_stack((freq, pegelamiet, pegelamiet2)), fmt='%5s', delimiter=',')
 xticks((20,50,100,200,500,1000,2000,5000,10000,20000),('0,02','0,05','0,1','0,2','0,5','1','2','5','10','20'))
 xlim(20,20000)
 ylim(ymin,ymax)
@@ -85,3 +85,4 @@ xlabel('$f_m$ in kHz',labelpad=1.0)
 ylabel(r'$L_{p}$ in dB',labelpad=1.0)
 gca().set_position([0.135,0.13,0.81,0.84] )
 savefig('Flatplate_LE_Tu038_.pdf',dpi=600)
+savefig('naca0012_U5.pdf',dpi=600)
